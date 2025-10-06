@@ -44,6 +44,12 @@ android {
         noCompress 'tflite'
         noCompress 'lite'
     }
+    
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
 
     buildFeatures {
         mlModelBinding true
@@ -64,9 +70,8 @@ dependencies {
     // AndroidX dependencies
     implementation 'androidx.annotation:annotation:1.9.1'
     
-    // TensorFlow Lite for YOLO models
+    // TensorFlow Lite for YOLO models (16KB page size compatible)
     implementation 'org.tensorflow:tensorflow-lite:2.17.0'
-    //noinspection Aligned16KB
     implementation 'org.tensorflow:tensorflow-lite-gpu:2.17.0'
     implementation 'org.tensorflow:tensorflow-lite-support:0.5.0'
 }

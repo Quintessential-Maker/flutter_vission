@@ -9,4 +9,7 @@
     <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
     
+    <!-- Support for 16KB page size -->
+    <supports-screens android:anyDensity="true" />
+    
 </manifest>
