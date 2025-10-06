@@ -7,12 +7,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.vladih.computer_vision.flutter_vision.models.Yolo;
-import com.vladih.computer_vision.flutter_vision.models.Yolo11;
-import com.vladih.computer_vision.flutter_vision.models.Yolov8;
-import com.vladih.computer_vision.flutter_vision.models.Yolov5;
-import com.vladih.computer_vision.flutter_vision.models.Yolov8Seg;
-import com.vladih.computer_vision.flutter_vision.utils.utils;
+import com.vladih.computer_vision.flutter_vision.models.*;
+import com.vladih.computer_vision.flutter_vision.utils.*;
 
 import org.opencv.android.OpenCVLoader;
 

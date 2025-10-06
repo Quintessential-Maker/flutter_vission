@@ -11,7 +11,6 @@ import org.tensorflow.lite.Interpreter;
 import org.tensorflow.lite.Tensor;
 import org.tensorflow.lite.gpu.CompatibilityList;
 import org.tensorflow.lite.gpu.GpuDelegate;
-import org.tensorflow.lite.gpu.GpuDelegateFactory;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -101,8 +100,7 @@ public class Yolo {
                 // Check if GPU support is available
                 CompatibilityList compatibilityList = new CompatibilityList();
                 if (use_gpu && compatibilityList.isDelegateSupportedOnThisDevice()) {
-                    GpuDelegateFactory.Options delegateOptions = compatibilityList.getBestOptionsForThisDevice();
-                    GpuDelegate gpuDelegate = new GpuDelegate(delegateOptions.setQuantizedModelsAllowed(this.quantization));
+                    GpuDelegate gpuDelegate = new GpuDelegate();
                     interpreterOptions.addDelegate(gpuDelegate);
                 } else {
                     interpreterOptions.setNumThreads(num_threads);
