@@ -1,3 +1,10 @@
+## 3.0.2+1
+
+* PM Poshan fork: based on upstream flutter_vision 3.0.2 with no changes to
+  the plugin code. Adds the example models from the upstream GitHub tag
+  v3.0.2 and an `example/.gitignore`, which the pub.dev archive does not ship.
+* Verified in a minified release build of PM Poshan (Android, Flutter 3.47.4).
+
 ## 3.0.2
 
 * Fix a crash at startup in Android release builds ("Failed to create an
