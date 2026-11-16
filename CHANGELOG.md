@@ -1,3 +1,54 @@
+## 3.0.2
+
+* Fix a crash at startup in Android release builds ("Failed to create an
+  instance of class androidx.work.impl.WorkDatabase"). LiteRT pulled in Google
+  Play AI delivery, and with it WorkManager and Room, which R8 breaks; the
+  plugin does not use it and now excludes it, which also makes apps smaller.
+* Tested in release mode on a Pixel 6a: 113 ms per photo on CPU, 36 ms on GPU.
+
+## 3.0.1
+
+* Shorter package description (pub.dev requires 60 to 180 characters).
+
+## 3.0.0
+
+Complete rewrite. See [MIGRATION.md](MIGRATION.md) to upgrade from 2.x.
+
+* **iOS support** (iOS 15+, Swift Package Manager), with the same results as
+  Android.
+* New API: `YoloModel.load`, `detectImage`, `detectFrame`, `dispose`, typed
+  `Detection` results (`Rect` box, label, confidence, polygon) and
+  `BoxMapper` to draw results on screen.
+* Several models can be loaded at the same time.
+* The model format is detected from the model itself: YOLOv5/v7, v8, v9, v11,
+  v12 and NMS-free YOLOv10 / YOLO26. `modelVersion` is gone.
+* LiteRT 2.3 (`CompiledModel` API) with CPU, GPU and NPU acceleration and
+  automatic fallback to CPU.
+* Correct camera frames on every device: row padding and pixel strides,
+  NV21, YUV420 and BGRA, and a per-frame rotation.
+* `detectImage` applies the EXIF orientation and decodes large photos at the
+  size the model needs (no more out-of-memory errors).
+* Letterbox resizing (like Ultralytics) instead of stretching, class-aware NMS
+  and correct boxes for non-square models.
+* Segmentation outlines are traced in Dart: OpenCV was removed, the native
+  libraries are 16 KB page aligned (Android 15+) and apps are tens of MB
+  smaller.
+* Models with int8 inputs/outputs and NCHW inputs are supported.
+* No more crashes when a model is closed or replaced during a detection, and
+  no more native memory leaks.
+* The plugin no longer adds camera or storage permissions to your app.
+* The pub.dev package is about 120 KB: the example models stay on GitHub.
+* Requires Flutter 3.41+, Android minSdk 24, iOS 15. On iOS the simulator
+  needs an Apple Silicon Mac (LiteRT ships arm64 only); see the README for
+  the `EXCLUDED_ARCHS` setting needed by `flutter build ios --simulator`.
+* Fixes reported issues: 16 KB page size (#58), app size (#27, #40), live
+  detection not working on some phones (#34, #36, #37), segmentation crash
+  with empty masks (#39), several models at once (#43), portrait photos
+  (#41), NCHW inputs (#37) and iOS support (#8). Asset loading errors now say
+  what to check (#44, #51). uint8-input models (#42) are still not supported.
+* Tested with Flutter 3.47.8: unit tests, and integration tests on an
+  Android 16 emulator and on an iOS simulator (Xcode 26.6).
+
 ## 2.0.0
 * **BREAKING CHANGE**: Removed all Tesseract OCR functionality.
 * Added support for YOLOv11 (YOLO11).

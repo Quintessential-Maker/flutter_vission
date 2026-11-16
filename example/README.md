@@ -1,16 +1,31 @@
-# flutter_vision_example
+# flutter_vision example
 
-Demonstrates how to use the flutter_vision plugin.
+Object detection and segmentation on photos and on the live camera. Pick the
+model (YOLO11n, YOLOv8n, YOLOv5n or YOLOv8n-seg) and the hardware (CPU, GPU,
+NPU) on the home screen.
 
-## Getting Started
+## Models
 
-This project is a starting point for a Flutter application.
+The models live in `assets/` in the
+[GitHub repository](https://github.com/vladiH/flutter_vision/tree/master/example/assets).
+They are left out of the pub.dev package to keep it small, so if you got the
+example from pub.dev, copy `yolov5n.tflite`, `yolov8n.tflite`,
+`yolov8n-seg.tflite` and `yolov11n.tflite` from there into `assets/`, or export
+your own with `yolo export model=yolo11n.pt format=tflite`.
 
-A few resources to get you started if this is your first Flutter project:
+## Run
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+```bash
+flutter run
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+On iOS, use a real iPhone or the simulator on an Apple Silicon Mac.
+
+## Tests
+
+End-to-end tests on a device or emulator (one test downloads a sample photo
+from ultralytics.com and is skipped when offline):
+
+```bash
+flutter test integration_test
+```
